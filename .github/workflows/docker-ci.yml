@@ -1,0 +1,29 @@
+name: Docker CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build backend Docker image
+        run: |
+          docker build \
+            -t angular-node-backend:${{ github.sha }} \
+            ./backend
+
+      - name: Build frontend Docker image
+        run: |
+          docker build \
+            -t angular-node-frontend:${{ github.sha }} \
+            ./frontend

@@ -1,0 +1,63 @@
+<h2>
+  {{ product() ? 'Edit Product' : 'Create Product' }}
+</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="submit()">
+  <div>
+    <label>Name</label>
+
+    <input type="text" formControlName="name" />
+
+    @if (productForm.controls.name.touched && productForm.controls.name.invalid) {
+      <small>Product name is required.</small>
+    }
+  </div>
+
+  <div>
+    <label>Description</label>
+
+    <textarea formControlName="description"></textarea>
+
+    @if (productForm.controls.description.touched && productForm.controls.description.invalid) {
+      <small>Description is required.</small>
+    }
+  </div>
+
+  <div>
+    <label>Price</label>
+
+    <input type="number" formControlName="price" />
+  </div>
+
+  <div>
+    <label>Category</label>
+
+    <input type="text" formControlName="category" />
+  </div>
+
+  <div>
+    <label>Quantity</label>
+
+    <input type="number" formControlName="quantity" />
+  </div>
+
+  <button type="submit" [disabled]="(creating$ | async) || (updating$ | async)">
+    @if ((creating$ | async) || (updating$ | async)) {
+      Saving...
+    } @else {
+      {{ product() ? 'Update Product' : 'Create Product' }}
+    }
+  </button>
+</form>
+
+<!-- @if (successMessage$ | async; as message) {
+  @if (message) {
+    <p>{{ message }}</p>
+  }
+} -->
+@if (successMessage) {
+  <p>{{ successMessage }}</p>
+}
+@if (errorMessage) {
+  <p>{{ errorMessage }}</p>
+}

@@ -1,0 +1,32 @@
+GET http://localhost:3000/api/products?page=1&limit=10&category=Electronics HTTP/1.1
+Content-Type: application/json
+
+### 
+POST http://localhost:3000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Business laptop",
+  "price": 75000,
+  "category": "Electronics",
+  "quantity": 1
+}
+
+### 
+PUT http://localhost:3000/api/products/6ab55d61a408bb6c2f415f9f HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Dark Chopter"
+}
+
+
+###
+GET http://localhost:3000/api/products/6ab55d61a408bb6c2f415f9f HTTP/1.1
+Content-Type: application/json
+
+
+###
+DELETE http://localhost:3000/api/products/6ab55d61a408bb6c2f415f9f HTTP/1.1
+Content-Type: application/json
