@@ -10,6 +10,7 @@ export class ProductService {
   }
 
   async createProduct(productData: IProduct) {
+    console.log({ productData });
     return this.productRepository.create(productData);
   }
 
